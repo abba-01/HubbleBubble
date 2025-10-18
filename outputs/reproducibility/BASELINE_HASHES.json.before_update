@@ -1,0 +1,18 @@
+{
+  "RENT_SPEC_VERSION": "1.0.0",
+  "created": "2025-10-18T14:46:10.873383",
+  "purpose": "Cryptographic baseline for iron-tight reproducibility proof",
+  "algorithm": "SHA-256",
+  "file_count": 9,
+  "hashes": {
+    "h0_validation_report.html": "98882e936e52b55ca19ba1c5d1a03b7e07d740d9504e8cbc0b2f2feaa5069d9f",
+    "results/bootstrap.json": "02808bba9465c951fd8e9aac29868aefc7ea06903bad57679429bd0b57af9ec1",
+    "results/grids.json": "11b95ef17300a737b753989f35680c643e70c2f031794f5b232f2d7321c1fc2e",
+    "results/grids_rerun.json": "11b95ef17300a737b753989f35680c643e70c2f031794f5b232f2d7321c1fc2e",
+    "results/inject.json": "c5744d67e6ce51186b39cf86caa1101dcff5b68212233fad4e5336709c0a2487",
+    "results/loao.json": "38dccc6416f59e8f88e2c5090cf83bd712c4b78dc50332097f5dae0ddb5abc70",
+    "results/loao_fixed.json": "a8836a6a006c277ad5f94cadafba411ccdd7e27dea6cb9648e357eb7dfabba45",
+    "results/loao_rerun.json": "38dccc6416f59e8f88e2c5090cf83bd712c4b78dc50332097f5dae0ddb5abc70",
+    "results/loao_scenario_local.json": "6d408eca5fcb90667428512b67b7443bde290007aba6f17aaca82856c43cee28"
+  }
+}
