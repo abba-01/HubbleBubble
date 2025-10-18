@@ -1,0 +1,54 @@
+{
+  "provenance": {
+    "file": "assets/vizier/riess_2016_systematic_grid_210.csv",
+    "sha256": "245e5ffbb99148037523bbba0ba4899cb56fe7e2e545fba02fce1a3eef21fc2f"
+  },
+  "anchor_statistics": {
+    "MW": {
+      "mean": 76.13130434782606,
+      "std": 0.9882367417312052,
+      "median": 76.04,
+      "count": 23
+    },
+    "LMC": {
+      "mean": 72.29,
+      "std": 0.8030396797622957,
+      "median": 72.07,
+      "count": 23
+    },
+    "NGC4258": {
+      "mean": 72.51041666666667,
+      "std": 0.8311881446965284,
+      "median": 72.59,
+      "count": 24
+    }
+  },
+  "anchor_spread": {
+    "computed": 3.8413043478260533,
+    "expected": 3.84,
+    "difference": 0.0013043478260534869
+  },
+  "consistency_checks": {
+    "MW": {
+      "expected": 76.1,
+      "computed": 76.13130434782606,
+      "difference": 0.03130434782606528
+    },
+    "LMC": {
+      "expected": 72.3,
+      "computed": 72.29,
+      "difference": 0.009999999999990905
+    },
+    "NGC4258": {
+      "expected": 72.5,
+      "computed": 72.51041666666667,
+      "difference": 0.010416666666671404
+    }
+  },
+  "outliers": {
+    "count": 0,
+    "detected": false
+  },
+  "passed": true,
+  "note": "If results differ, check dataset version and SHA-256 hash"
+}

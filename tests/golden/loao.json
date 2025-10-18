@@ -1,0 +1,71 @@
+{
+  "scenarios": {
+    "baseline": {
+      "excluded_anchor": "none",
+      "corr_anchor_revised": -1.8655480072463604,
+      "mu_shoes_revised": 73.5887619047619,
+      "mu_shoes_corr": 71.50321389751554,
+      "sigma_shoes_revised": 1.5564944634690332,
+      "mu_star": 68.75622909523844,
+      "sigma_star": 1.2561336036942867,
+      "z_planck": 1.1831775623766816,
+      "z_shoes_corr": 2.1868571895523057
+    },
+    "drop_MW": {
+      "excluded_anchor": "M",
+      "corr_anchor_revised": 0.0,
+      "mu_shoes_revised": 72.96119658119656,
+      "mu_shoes_corr": 72.74119658119656,
+      "sigma_shoes_revised": 1.3886505247859204,
+      "mu_star": 69.539713311702,
+      "sigma_star": 1.4951581828244087,
+      "z_planck": 1.5180422632035053,
+      "z_shoes_corr": 2.141233821458837
+    },
+    "drop_LMC": {
+      "excluded_anchor": "L",
+      "corr_anchor_revised": -1.810443840579694,
+      "mu_shoes_revised": 74.12700854700854,
+      "mu_shoes_corr": 72.09656470642885,
+      "sigma_shoes_revised": 1.6065213355727517,
+      "mu_star": 69.03962194146646,
+      "sigma_star": 1.3905512363574037,
+      "z_planck": 1.2726046298747344,
+      "z_shoes_corr": 2.1983675862028296
+    },
+    "drop_NGC4258": {
+      "excluded_anchor": "N",
+      "corr_anchor_revised": -1.9206521739130267,
+      "mu_shoes_revised": 74.14577586206894,
+      "mu_shoes_corr": 72.00512368815592,
+      "sigma_shoes_revised": 1.65142949979816,
+      "mu_star": 68.95995248764656,
+      "sigma_star": 1.3778184642879876,
+      "z_planck": 1.22654219801001,
+      "z_shoes_corr": 2.2101396369971025
+    },
+    "external_only": {
+      "excluded_anchor": "M",
+      "corr_anchor_revised": 0.0,
+      "mu_shoes_revised": 72.96119658119656,
+      "mu_shoes_corr": 72.74119658119656,
+      "sigma_shoes_revised": 1.3886505247859204,
+      "mu_star": 69.539713311702,
+      "sigma_star": 1.4951581828244087,
+      "z_planck": 1.5180422632035053,
+      "z_shoes_corr": 2.141233821458837
+    }
+  },
+  "max_z_planck": 1.5180422632035053,
+  "gate_a_engineering": {
+    "threshold": 1.5,
+    "passed": false
+  },
+  "gate_b_sidak": {
+    "alpha": 0.05,
+    "K": 5,
+    "threshold": 2.318679209826409,
+    "passed": true
+  },
+  "overall_passed": false
+}

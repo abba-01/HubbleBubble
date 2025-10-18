@@ -1,0 +1,118 @@
+{
+  "RENT_SPEC_VERSION": "1.0.0",
+  "description": "RENT execution policy and acceptability tree rules",
+  "execution_modes": {
+    "strict": {
+      "description": "Full reproduction (requires identical environment)",
+      "environment_minor": "log_and_continue",
+      "environment_major": "prompt_rebuild",
+      "data_missing": "fetch_or_abort",
+      "hash_mismatch": "abort",
+      "logic_error": "abort",
+      "security_flag": "abort"
+    },
+    "audit": {
+      "description": "Observational run for differences",
+      "environment_minor": "log_drift",
+      "environment_major": "log_drift",
+      "data_missing": "log_and_skip",
+      "hash_mismatch": "log_and_continue",
+      "logic_error": "abort",
+      "security_flag": "abort"
+    },
+    "dry-run": {
+      "description": "Endpoint and hash verification only",
+      "environment_minor": "log_only",
+      "environment_major": "log_only",
+      "data_missing": "log_only",
+      "hash_mismatch": "log_only",
+      "logic_error": "log_only",
+      "security_flag": "abort"
+    },
+    "auto": {
+      "description": "CI-compatible, non-interactive",
+      "environment_minor": "log_and_continue",
+      "environment_major": "log_and_skip_phase",
+      "data_missing": "fetch_from_discovery_tree",
+      "hash_mismatch": "log_and_continue",
+      "logic_error": "abort",
+      "security_flag": "abort"
+    }
+  },
+  "acceptability_tree": {
+    "environment_minor": {
+      "description": "Minor version drift (patch updates, extra packages)",
+      "threshold": {
+        "max_mismatches": 10,
+        "max_version_drift_major": 0,
+        "max_version_drift_minor": 1
+      },
+      "actions": {
+        "log_drift": "Record in accept_tree_log.json, continue",
+        "log_and_continue": "Record and continue execution",
+        "override": "User override to continue despite drift",
+        "prompt_rebuild": "Ask user to rebuild environment"
+      }
+    },
+    "environment_major": {
+      "description": "Major version drift (NumPy 1.x → 2.x, missing critical packages)",
+      "threshold": {
+        "max_mismatches": 35,
+        "critical_packages": ["numpy", "scipy", "pandas", "matplotlib"]
+      },
+      "actions": {
+        "log_drift": "Record major drift, continue with warning",
+        "prompt_rebuild": "Recommend rebuilding environment",
+        "rebuild": "Stop and rebuild from requirements.txt",
+        "override": "User override (logs risk acknowledgment)",
+        "log_and_skip_phase": "Log and skip computationally intensive phases"
+      }
+    },
+    "data_missing": {
+      "description": "Required data file not found locally",
+      "actions": {
+        "fetch": "Use discovery tree to fetch from endpoints",
+        "fetch_or_abort": "Fetch or abort if fetch fails",
+        "fetch_from_discovery_tree": "Automated fetch attempt",
+        "log_and_skip": "Log missing data, skip dependent phases",
+        "skip": "Skip phase requiring missing data",
+        "abort": "Stop execution",
+        "prompt": "Ask user for action"
+      }
+    },
+    "hash_mismatch": {
+      "description": "File hash doesn't match documented value",
+      "actions": {
+        "verify_source": "Re-fetch and verify",
+        "retry": "Recompute hash",
+        "override": "User acknowledges different data version",
+        "log_and_continue": "Log mismatch, continue execution",
+        "abort": "Stop execution (strict mode)"
+      }
+    },
+    "logic_error": {
+      "description": "Internal script error or unexpected condition",
+      "actions": {
+        "abort": "Stop execution and report error"
+      }
+    },
+    "security_flag": {
+      "description": "Potential security issue (malformed data, suspicious endpoints)",
+      "actions": {
+        "abort": "Stop execution immediately"
+      }
+    }
+  },
+  "tolerances": {
+    "corrections_kms_mpc": 0.01,
+    "means_kms_mpc": 0.1,
+    "tensions_sigma": 0.05,
+    "reduction_percentage_points": 1.0
+  },
+  "defaults": {
+    "mode": "audit",
+    "interactive": true,
+    "stop_on_fail": false,
+    "log_level": "INFO"
+  }
+}

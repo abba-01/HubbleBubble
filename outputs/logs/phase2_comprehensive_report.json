@@ -1,0 +1,280 @@
+{
+  "timestamp": "2025-10-18T14:52:54.710906",
+  "summary": {
+    "total_tests": 5,
+    "passed": 4,
+    "failed": 1
+  },
+  "results": [
+    {
+      "name": "verify_environment",
+      "script": "rent/phase1_provenance/verify_environment.py",
+      "return_code": 0,
+      "passed": true
+    },
+    {
+      "name": "recompute_corrections",
+      "script": "rent/phase2_reexecution/recompute_corrections.py",
+      "return_code": 1,
+      "passed": false
+    },
+    {
+      "name": "recompute_penalty",
+      "script": "rent/phase2_reexecution/recompute_penalty.py",
+      "return_code": 0,
+      "passed": true
+    },
+    {
+      "name": "recompute_merge",
+      "script": "rent/phase2_reexecution/recompute_merge.py",
+      "return_code": 0,
+      "passed": true
+    },
+    {
+      "name": "recompute_tensions",
+      "script": "rent/phase2_reexecution/recompute_tensions.py",
+      "return_code": 0,
+      "passed": true
+    }
+  ],
+  "logs": {
+    "environment": {
+      "RENT_SPEC_VERSION": "1.0.0",
+      "mode": "audit",
+      "checked": 52,
+      "matched": 17,
+      "mismatches": [
+        {
+          "package": "astropy",
+          "expected": "6.1.0",
+          "installed": "7.1.1"
+        },
+        {
+          "package": "astropy-iers-data",
+          "expected": "0.2025.10.13.0.37.17",
+          "installed": "0.2025.10.6.0.35.25"
+        },
+        {
+          "package": "astroquery",
+          "expected": "0.4.7",
+          "installed": "0.4.11"
+        },
+        {
+          "package": "attrs",
+          "expected": "25.4.0",
+          "installed": "23.2.0"
+        },
+        {
+          "package": "cffi",
+          "expected": "2.0.0",
+          "installed": "1.16.0"
+        },
+        {
+          "package": "charset-normalizer",
+          "expected": "3.4.4",
+          "installed": "3.3.2"
+        },
+        {
+          "package": "cryptography",
+          "expected": "46.0.3",
+          "installed": "43.0.0"
+        },
+        {
+          "package": "idna",
+          "expected": "3.11",
+          "installed": "3.7"
+        },
+        {
+          "package": "jsonschema",
+          "expected": "4.23.0",
+          "installed": "4.19.1"
+        },
+        {
+          "package": "jsonschema-specifications",
+          "expected": "2025.9.1",
+          "installed": "2023.11.2"
+        },
+        {
+          "package": "matplotlib",
+          "expected": "3.9.2",
+          "installed": "3.10.6"
+        },
+        {
+          "package": "numpy",
+          "expected": "2.1.2",
+          "installed": "1.26.4"
+        },
+        {
+          "package": "packaging",
+          "expected": "25.0",
+          "installed": "24.2"
+        },
+        {
+          "package": "pandas",
+          "expected": "2.2.2",
+          "installed": "2.2.1"
+        },
+        {
+          "package": "pillow",
+          "expected": "12.0.0",
+          "installed": "11.3.0"
+        },
+        {
+          "package": "pycparser",
+          "expected": "2.23",
+          "installed": "2.20"
+        },
+        {
+          "package": "pyparsing",
+          "expected": "3.2.5",
+          "installed": "3.1.1"
+        },
+        {
+          "package": "pytz",
+          "expected": "2025.2",
+          "installed": "2024.1"
+        },
+        {
+          "package": "pyvo",
+          "expected": "1.7.1",
+          "installed": "1.7"
+        },
+        {
+          "package": "PyYAML",
+          "expected": "6.0.2",
+          "installed": "6.0.1"
+        },
+        {
+          "package": "referencing",
+          "expected": "0.37.0",
+          "installed": "0.31.1"
+        },
+        {
+          "package": "requests",
+          "expected": "2.32.5",
+          "installed": "2.32.4"
+        },
+        {
+          "package": "rpds-py",
+          "expected": "0.27.1",
+          "installed": "0.17.1"
+        },
+        {
+          "package": "scipy",
+          "expected": "1.13.1",
+          "installed": "1.16.2"
+        },
+        {
+          "package": "six",
+          "expected": "1.17.0",
+          "installed": "1.16.0"
+        },
+        {
+          "package": "typing_extensions",
+          "expected": "4.15.0",
+          "installed": "4.9.0"
+        },
+        {
+          "package": "urllib3",
+          "expected": "2.5.0",
+          "installed": "1.26.19"
+        }
+      ],
+      "missing": [
+        "certifi",
+        "Jinja2",
+        "Markdown",
+        "MarkupSafe",
+        "seaborn",
+        "tabulate",
+        "tqdm",
+        "tzdata"
+      ],
+      "extra": [
+        "argcomplete",
+        "bcc",
+        "Brlapi",
+        "configshell-fb",
+        "cupshelpers",
+        "dasbus",
+        "dbus-python",
+        "decorator",
+        "distro",
+        "dnf",
+        "file-magic",
+        "iniconfig",
+        "iniparse",
+        "jsonpointer",
+        "kmod",
+        "langtable",
+        "libcomps",
+        "libdnf",
+        "libvirt-python",
+        "louis",
+        "lxml",
+        "netaddr",
+        "nftables",
+        "# Editable install with no version control (nu-anthropology",
+        "pcp",
+        "perf",
+        "pexpect",
+        "pluggy",
+        "ply",
+        "ptyprocess",
+        "pycairo",
+        "pycups",
+        "pyenchant",
+        "Pygments",
+        "PyGObject",
+        "pyinotify",
+        "pyodbc",
+        "pytest",
+        "python-linux-procfs",
+        "pyudev",
+        "pyxdg",
+        "regex",
+        "rpm",
+        "rtslib-fb",
+        "setools",
+        "setuptools",
+        "sos",
+        "subscription-manager",
+        "systemd-python",
+        "targetcli-fb",
+        "urwid",
+        "wcwidth"
+      ],
+      "passed": false,
+      "acceptability_decision": {
+        "timestamp": "2025-10-18T14:52:54.070856",
+        "issue_type": "environment_major",
+        "mode": "audit",
+        "policy_action": "log_drift",
+        "details": {
+          "total_checked": 52,
+          "mismatches": 27,
+          "missing": 8,
+          "critical_drift": [
+            "numpy: 2.1.2 \u2192 1.26.4"
+          ],
+          "drift_percentage": 67.3076923076923
+        },
+        "interactive": false,
+        "resolved_action": "continue"
+      }
+    },
+    "corrections": {
+      "error": "Log file not found"
+    },
+    "penalty": {
+      "error": "Log file not found"
+    },
+    "merge": {
+      "error": "Log file not found"
+    },
+    "tensions": {
+      "error": "Log file not found"
+    }
+  },
+  "overall_passed": false
+}

@@ -1,0 +1,51 @@
+{
+  "description": "Pre-registered acceptance gates for HubbleBubble validation",
+  "version": "1.0",
+  "date": "2025-10-18",
+  "gates": {
+    "loao_engineering": {
+      "description": "Engineering gate: max z_planck across anchor-removal scenarios",
+      "threshold": 1.5,
+      "unit": "sigma",
+      "type": "upper_bound"
+    },
+    "loao_sidak": {
+      "description": "Šidák family-wise correction for multiple comparisons",
+      "alpha": 0.05,
+      "K": 5,
+      "threshold": 2.318679209826409,
+      "unit": "sigma",
+      "type": "upper_bound",
+      "formula": "Φ⁻¹(1 - (1-(1-α)^(1/K)))"
+    },
+    "grid_scan_median": {
+      "description": "Grid-scan: median tension across epistemic parameter space",
+      "min": 0.9,
+      "max": 1.1,
+      "unit": "sigma",
+      "type": "range"
+    },
+    "bootstrap_p95": {
+      "description": "Bootstrap: 95th percentile of z_planck distribution",
+      "threshold": 1.2,
+      "unit": "sigma",
+      "type": "upper_bound"
+    },
+    "injection_bias": {
+      "description": "Synthetic injection: absolute bias in recovered H₀",
+      "threshold": 0.3,
+      "unit": "km/s/Mpc",
+      "type": "upper_bound"
+    },
+    "injection_z_planck": {
+      "description": "Synthetic injection: median z_planck",
+      "threshold": 1.0,
+      "unit": "sigma",
+      "type": "upper_bound"
+    }
+  },
+  "seed": {
+    "master": 172901,
+    "description": "Fixed random seed for reproducibility"
+  }
+}

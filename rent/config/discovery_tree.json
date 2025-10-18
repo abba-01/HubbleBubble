@@ -1,0 +1,64 @@
+{
+  "RENT_SPEC_VERSION": "1.0.0",
+  "description": "Discovery tree for RENT data fetching: check → primary → mirror → local fallback → prompt",
+  "datasets": {
+    "shoes_systematic_grid": {
+      "check": "assets/vizier/riess_2016_systematic_grid_210.csv",
+      "sources": [
+        "https://vizier.cds.unistra.fr/viz-bin/nph-Cat/txt?J/ApJ/826/56",
+        "https://cdsarc.cds.unistra.fr/viz-bin/nph-Cat/txt?J/ApJ/826/56"
+      ],
+      "local_fallback": "mirrors/vizier/riess_2016_systematic_grid_210.csv",
+      "required": true,
+      "description": "SH0ES 2016 systematic grid (210 configurations)"
+    },
+    "planck_chains": {
+      "check": "assets/planck/planck_samples_key_params.npz",
+      "sources": [
+        "https://pla.esac.esa.int/pla/aio/product-action?COSMOLOGY.FILE_ID=COM_CosmoParams_base-plikHM-TTTEEE-lowl-lowE_R3.00.zip"
+      ],
+      "local_fallback": "mirrors/planck/planck_samples_key_params.npz",
+      "required": true,
+      "description": "Planck 2018 ΛCDM posterior samples"
+    },
+    "baseline_measurements": {
+      "check": "assets/external/baseline_measurements.json",
+      "sources": [],
+      "local_fallback": null,
+      "required": true,
+      "description": "Baseline SH0ES and Planck H₀ measurements"
+    },
+    "systematic_corrections": {
+      "check": "assets/external/systematic_corrections_applied.json",
+      "sources": [],
+      "local_fallback": null,
+      "required": true,
+      "description": "Documented anchor and P-L corrections"
+    },
+    "epistemic_penalty_params": {
+      "check": "assets/external/epistemic_penalty_parameters.json",
+      "sources": [],
+      "local_fallback": null,
+      "required": false,
+      "description": "Epistemic penalty parameters (Δ_T, f_systematic)"
+    },
+    "trgb_measurements": {
+      "check": "assets/external/trgb_h0_measurements.json",
+      "sources": [
+        "https://iopscience.iop.org/article/10.3847/1538-4357/ab2f73"
+      ],
+      "local_fallback": "mirrors/trgb/carnegie_chicago_trgb.json",
+      "required": false,
+      "description": "Carnegie-Chicago TRGB H₀ measurements"
+    },
+    "act_measurements": {
+      "check": "assets/external/act_h0_measurements.json",
+      "sources": [
+        "https://lambda.gsfc.nasa.gov/product/act/"
+      ],
+      "local_fallback": "mirrors/act/act_dr6_h0.json",
+      "required": false,
+      "description": "ACT DR6 H₀ measurements"
+    }
+  }
+}

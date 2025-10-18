@@ -1,0 +1,67 @@
+{
+  "h0_statistics": {
+    "mean": 67.27331189831371,
+    "std": 0.6040822485825148,
+    "variance": 0.3649153630525072
+  },
+  "parameter_correlations": {
+    "tau": {
+      "correlation": 0.2818457255737508,
+      "r_squared": 0.07943701302419405,
+      "variance_contribution": 0.028987786447530514,
+      "std_contribution": 0.1702579996579618
+    },
+    "omegabh2": {
+      "correlation": 0.7235974883374687,
+      "r_squared": 0.5235933251282932,
+      "variance_contribution": 0.19106724833106054,
+      "std_contribution": 0.4371123978235581
+    },
+    "omegach2": {
+      "correlation": -0.9671649498035292,
+      "r_squared": 0.9354080401284631,
+      "variance_contribution": 0.34134476456571233,
+      "std_contribution": 0.584247177627511
+    },
+    "logA": {
+      "correlation": 0.1017291717335394,
+      "r_squared": 0.010348824381591952,
+      "variance_contribution": 0.0037764450063752656,
+      "std_contribution": 0.06145278680723329
+    },
+    "ns": {
+      "correlation": 0.7284048415239401,
+      "r_squared": 0.5305736131555163,
+      "variance_contribution": 0.19361446267072577,
+      "std_contribution": 0.4400164345461721
+    }
+  },
+  "variance_decomposition": {
+    "total_explained": 0.7587907070214044,
+    "total_r_squared": 2.0793608158180588,
+    "unexplained": -0.3938753439688972,
+    "unexplained_std": NaN
+  },
+  "ranking": [
+    [
+      "omegach2",
+      0.584247177627511
+    ],
+    [
+      "ns",
+      0.4400164345461721
+    ],
+    [
+      "omegabh2",
+      0.4371123978235581
+    ],
+    [
+      "tau",
+      0.1702579996579618
+    ],
+    [
+      "logA",
+      0.06145278680723329
+    ]
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "RENT_SPEC_VERSION": "1.0.0",
+  "description": "External data endpoints for RENT validation",
+  "endpoints": {
+    "vizier": {
+      "primary": "https://vizier.cds.unistra.fr/",
+      "mirror": "https://cdsarc.cds.unistra.fr/",
+      "status_check": "https://vizier.cds.unistra.fr/viz-bin/VizieR",
+      "timeout_seconds": 30
+    },
+    "planck_legacy_archive": {
+      "primary": "https://pla.esac.esa.int/pla/",
+      "mirror": "https://irsa.ipac.caltech.edu/data/Planck/",
+      "status_check": "https://pla.esac.esa.int/pla/",
+      "timeout_seconds": 60
+    },
+    "lambda_nasa": {
+      "primary": "https://lambda.gsfc.nasa.gov/",
+      "description": "NASA LAMBDA archive for CMB data",
+      "timeout_seconds": 30
+    },
+    "iopscience": {
+      "primary": "https://iopscience.iop.org/",
+      "description": "IOP Science for TRGB papers",
+      "timeout_seconds": 30
+    },
+    "arxiv": {
+      "primary": "https://arxiv.org/",
+      "mirror": "https://export.arxiv.org/",
+      "description": "arXiv preprint server",
+      "timeout_seconds": 20
+    }
+  },
+  "mirrors": {
+    "local_cache": "mirrors/",
+    "descriptions": {
+      "mirrors/vizier/": "Local cache of VizieR catalogs",
+      "mirrors/planck/": "Local cache of Planck data products",
+      "mirrors/trgb/": "Local cache of TRGB measurements",
+      "mirrors/act/": "Local cache of ACT data",
+      "mirrors/spt/": "Local cache of SPT data",
+      "mirrors/bao/": "Local cache of BAO/DESI data"
+    }
+  },
+  "retry_policy": {
+    "max_attempts": 3,
+    "backoff_seconds": [5, 15, 30],
+    "timeout_multiplier": 1.5
+  }
+}

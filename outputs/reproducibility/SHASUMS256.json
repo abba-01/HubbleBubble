@@ -1,0 +1,12 @@
+{
+  "external/concordance_h0.json": "d8573f377fef84b608f997f5f2297cc29f1ecc40f7cd578f81148fb48cf521ed",
+  "external/final_tension_analysis.json": "c9127906c83d758e6819f13c6664333596106ffe2118a9bc786ac57917837da0",
+  "external/systematic_corrections_applied.json": "4099cab61c77f476e70623c14ac57aed2292db6dc28c2581b47d6ec1936d167a",
+  "external/total_systematic_bias_estimate.json": "303b20c1a8fdc09872c0fda48e8a4aeeb4a865ef7e2942b3a525602733b901d7",
+  "planck/planck_chain_statistics.json": "a64787b630b4a1cd9c515f423b22bc7e85b243de01e174addfe927758e4f44cc",
+  "planck/planck_samples_key_params.npz": "9cd6ca43b50538d55e6c75b5bfcfa78c619cdd036ce69ebed79b9d79984f31b5",
+  "planck/planck_uncertainty_decomposition.json": "b7fa735d69c9fe07c288e60299c58d390ef1d40e7c16360f0d1db52d7c915af3",
+  "vizier/riess_2016_systematic_grid_210.csv": "245e5ffbb99148037523bbba0ba4899cb56fe7e2e545fba02fce1a3eef21fc2f",
+  "vizier/shoes_systematic_grid_summary.json": "467fdf94f7d95708256449e25097272850c014a9b4a800cae56475ab40de75fa",
+  "vizier/shoes_uncertainty_decomposition.json": "e8f176c90f88bf97ae8f8e12e3d5cc063d8da63a3fdaf514b0cde465468b433a"
+}

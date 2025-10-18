@@ -1,0 +1,117 @@
+{
+  "overall_statistics": {
+    "mean": 73.5887619047619,
+    "std": 1.5564944634690332,
+    "variance": 2.4226750148097533
+  },
+  "systematic_decomposition": {
+    "Anc": {
+      "n_values": 9,
+      "between_group_variance": 1.5491023094252168,
+      "within_group_variance": 0.9037397196603726,
+      "std_contribution": 1.2446293863737978,
+      "fraction_of_total": 0.6394181225115181
+    },
+    "Brk": {
+      "n_values": 4,
+      "between_group_variance": 0.12164371302181921,
+      "within_group_variance": 2.239550890605297,
+      "std_contribution": 0.3487745876950028,
+      "fraction_of_total": 0.05021049553828481
+    },
+    "Clp": {
+      "n_values": 3,
+      "between_group_variance": 0.12563288948561974,
+      "within_group_variance": 1.8081189773453208,
+      "std_contribution": 0.3544473014223973,
+      "fraction_of_total": 0.051857095449298375
+    },
+    "Clt": {
+      "n_values": 2,
+      "between_group_variance": 0.03323427698756253,
+      "within_group_variance": 2.119040904779498,
+      "std_contribution": 0.18230270702203666,
+      "fraction_of_total": 0.01371800872358125
+    },
+    "Opt": {
+      "n_values": 2,
+      "between_group_variance": 0.04070536911812832,
+      "within_group_variance": 2.534498709784419,
+      "std_contribution": 0.201755716444735,
+      "fraction_of_total": 0.016801828090559974
+    },
+    "PL": {
+      "n_values": 3,
+      "between_group_variance": 0.18819688943860394,
+      "within_group_variance": 2.1010591900391513,
+      "std_contribution": 0.4338166541738617,
+      "fraction_of_total": 0.07768144232642056
+    },
+    "R": {
+      "n_values": 3,
+      "between_group_variance": 0.012421161399281839,
+      "within_group_variance": 2.705383276674912,
+      "std_contribution": 0.11145026424052049,
+      "fraction_of_total": 0.005127044000268951
+    },
+    "RV": {
+      "n_values": 2,
+      "between_group_variance": 0.009332618585079246,
+      "within_group_variance": 2.017977403814279,
+      "std_contribution": 0.09660547906345295,
+      "fraction_of_total": 0.003852195828177191
+    }
+  },
+  "anchor_statistics": {
+    "N": {
+      "mean": 72.51041666666667,
+      "std": 0.8311881446965284,
+      "count": 24
+    },
+    "M": {
+      "mean": 76.13130434782606,
+      "std": 0.9882367417312052,
+      "count": 23
+    },
+    "L": {
+      "mean": 72.29,
+      "std": 0.8030396797622957,
+      "count": 23
+    }
+  },
+  "anchor_spread": 3.8413043478260533,
+  "ranking": [
+    [
+      "Anc",
+      1.2446293863737978
+    ],
+    [
+      "PL",
+      0.4338166541738617
+    ],
+    [
+      "Clp",
+      0.3544473014223973
+    ],
+    [
+      "Brk",
+      0.3487745876950028
+    ],
+    [
+      "Opt",
+      0.201755716444735
+    ],
+    [
+      "Clt",
+      0.18230270702203666
+    ],
+    [
+      "R",
+      0.11145026424052049
+    ],
+    [
+      "RV",
+      0.09660547906345295
+    ]
+  ]
+}

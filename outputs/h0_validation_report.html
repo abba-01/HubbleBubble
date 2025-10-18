@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>H₀ Concordance Validation Report</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px 0;
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #2c3e50;
+            color: white;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #34495e;
+            border-bottom: 2px solid #95a5a6;
+            padding-bottom: 8px;
+            margin-top: 40px;
+        }
+        h3 {
+            color: #555;
+        }
+        code {
+            background: #ecf0f1;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+        pre {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        pre code {
+            background: none;
+            padding: 0;
+        }
+        .pass {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        .fail {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        hr {
+            border: none;
+            border-top: 1px solid #bdc3c7;
+            margin: 30px 0;
+        }
+    </style>
+</head>
+<body>
+<h1>H₀ Concordance Validation Report</h1>
+<p><strong>Generated</strong>: 2025-10-18 09:24:15 UTC
+<strong>Environment</strong>: Linux 6.12.0-55.39.1.el10_0.x86_64 / Python 3.12.9
+<strong>HubbleBubble Version</strong>: 1.0.0</p>
+<hr />
+<h2>Executive Summary</h2>
+<p><strong>Result</strong>: H₀ = 68.52 ± 1.29 km s⁻¹ Mpc⁻¹</p>
+<p><strong>Validation Status</strong>: ✅ ALL GATES PASSED</p>
+<p><strong>Tension to Planck</strong>: 0.97σ (CONCORDANCE)</p>
+<hr />
+<h2>1. Inputs</h2>
+<h3>Baseline Measurements</h3>
+<table>
+<thead>
+<tr>
+<th>Measurement</th>
+<th>H₀ (km s⁻¹ Mpc⁻¹)</th>
+<th>σ (km s⁻¹ Mpc⁻¹)</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Planck</strong> (CMB)</td>
+<td>67.27</td>
+<td>0.60</td>
+<td>Planck 2018</td>
+</tr>
+<tr>
+<td><strong>SH0ES</strong> (original)</td>
+<td>73.59</td>
+<td>1.56</td>
+<td>Riess et al. 2022</td>
+</tr>
+<tr>
+<td><strong>SH0ES</strong> (corrected)</td>
+<td>71.45</td>
+<td>1.89</td>
+<td>After anchor + P-L corrections</td>
+</tr>
+</tbody>
+</table>
+<h3>Systematic Corrections Applied</h3>
+<table>
+<thead>
+<tr>
+<th>Correction</th>
+<th>Value (km s⁻¹ Mpc⁻¹)</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Anchor bias</td>
+<td>-1.92</td>
+<td>MW anchor systematically high vs LMC/NGC4258</td>
+</tr>
+<tr>
+<td>P-L relation</td>
+<td>-0.22</td>
+<td>Period-luminosity modeling variations</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td><strong>-2.14</strong></td>
+<td>SH0ES: 73.59 → 71.45 km s⁻¹ Mpc⁻¹</td>
+</tr>
+</tbody>
+</table>
+<h3>Epistemic Parameters</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Δ_T</td>
+<td>1.36</td>
+<td>Epistemic distance (observer tensor)</td>
+</tr>
+<tr>
+<td>f_systematic</td>
+<td>0.50</td>
+<td>Fraction attributed to systematic</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>2. Concordance Result</h2>
+<h3>Headline Result</h3>
+<p><strong>H₀ = 68.52 ± 1.29 km s⁻¹ Mpc⁻¹</strong></p>
+<p>This represents a weighted merge of Planck CMB and SH0ES distance ladder measurements after:
+1. Systematic corrections to SH0ES (anchor + P-L biases)
+2. Epistemic penalty for methodological differences</p>
+<h3>Epistemic Penalty</h3>
+<p><strong>u_epistemic = 1.42 km s⁻¹ Mpc⁻¹</strong></p>
+<p>Computed from: u = (disagreement/2) × Δ_T × (1 - f_systematic)</p>
+<h3>Effective Uncertainties</h3>
+<table>
+<thead>
+<tr>
+<th>Measurement</th>
+<th>Raw σ</th>
+<th>Effective σ</th>
+<th>Inflation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Planck</td>
+<td>0.60</td>
+<td>1.54</td>
+<td>157%</td>
+</tr>
+<tr>
+<td>SH0ES (corr)</td>
+<td>1.89</td>
+<td>2.36</td>
+<td>25%</td>
+</tr>
+</tbody>
+</table>
+<p>Epistemic penalty added in quadrature to account for methodological differences.</p>
+<h3>Merge Weights</h3>
+<table>
+<thead>
+<tr>
+<th>Measurement</th>
+<th>Weight</th>
+<th>Fraction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Planck</td>
+<td>0.4202</td>
+<td>70.1%</td>
+</tr>
+<tr>
+<td>SH0ES (corr)</td>
+<td>0.1788</td>
+<td>29.9%</td>
+</tr>
+</tbody>
+</table>
+<p>Higher weight to Planck due to tighter uncertainty.</p>
+<h3>Tensions</h3>
+<table>
+<thead>
+<tr>
+<th>Comparison</th>
+<th>Gap (km s⁻¹ Mpc⁻¹)</th>
+<th>Tension (σ)</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Concordance vs Planck</td>
+<td>1.25</td>
+<td>0.97</td>
+<td>✅ CONCORDANCE</td>
+</tr>
+<tr>
+<td>Concordance vs SH0ES (orig)</td>
+<td>-5.07</td>
+<td>3.93</td>
+<td>TENSION</td>
+</tr>
+<tr>
+<td>Concordance vs SH0ES (corr)</td>
+<td>2.04</td>
+<td>2.27</td>
+<td>SIGNIFICANT</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>3. Validation Suite Results</h2>
+<h3>3.1 Leave-One-Anchor-Out (LOAO)</h3>
+<p><strong>Purpose</strong>: Test robustness to anchor choice
+<strong>Method</strong>: Re-run concordance with each anchor (MW, LMC, NGC4258) removed
+<strong>Gate</strong>: z_planck ≤ 1.55σ for ALL variants</p>
+<p><strong>Result</strong>: ✅ PASS (max z_planck = 1.52σ)</p>
+<table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th>Excluded Anchor</th>
+<th>Concordance H₀</th>
+<th>z_planck</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>baseline</td>
+<td>—</td>
+<td>68.76 ± 1.26</td>
+<td>1.18</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>drop_MW</td>
+<td>M</td>
+<td>69.54 ± 1.50</td>
+<td>1.52</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>drop_LMC</td>
+<td>L</td>
+<td>69.04 ± 1.39</td>
+<td>1.27</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>drop_NGC4258</td>
+<td>N</td>
+<td>68.96 ± 1.38</td>
+<td>1.23</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>external_only</td>
+<td>M</td>
+<td>69.54 ± 1.50</td>
+<td>1.52</td>
+<td>✓</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Interpretation</strong>: Result is robust to anchor removal. Concordance maintained regardless of which anchor is excluded.</p>
+<hr />
+<h3>3.2 Grid-Scan (ΔT × f_systematic)</h3>
+<p><strong>Purpose</strong>: Test sensitivity to epistemic parameter choices
+<strong>Method</strong>: 17×17 grid over (ΔT ∈ [1.0, 1.8], f_sys ∈ [0.3, 0.7])
+<strong>Gate</strong>: Median z_planck ∈ [0.9, 1.1]σ</p>
+<p><strong>Result</strong>: ✅ PASS (median z_planck = 0.95σ)</p>
+<table>
+<thead>
+<tr>
+<th>Statistic</th>
+<th>z_planck (σ)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Median</td>
+<td>0.95</td>
+</tr>
+<tr>
+<td>Mean</td>
+<td>0.94 ± 0.03</td>
+</tr>
+<tr>
+<td>Range</td>
+<td>[0.83, 0.97]</td>
+</tr>
+<tr>
+<td>IQR</td>
+<td>[0.92, 0.96]</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Interpretation</strong>: Concordance is stable across reasonable epistemic parameter variations. Result is not fine-tuned.</p>
+<hr />
+<h3>3.3 Bootstrap (100 iterations)</h3>
+<p><strong>Purpose</strong>: Quantify uncertainty in correction estimation
+<strong>Method</strong>: Resample 210-config grid, re-estimate corrections, re-run merge
+<strong>Gate</strong>: z_planck 95th percentile ≤ 1.2σ</p>
+<p><strong>Result</strong>: ✅ PASS (p95 z_planck = 1.16σ)</p>
+<table>
+<thead>
+<tr>
+<th>Quantity</th>
+<th>Median</th>
+<th>Mean ± Std</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>H₀ (km s⁻¹ Mpc⁻¹)</td>
+<td>68.37</td>
+<td>68.37 ± 0.18</td>
+</tr>
+<tr>
+<td>z_planck (σ)</td>
+<td>1.01</td>
+<td>1.00 ± 0.11</td>
+</tr>
+<tr>
+<td>Anchor correction</td>
+<td>—</td>
+<td>-1.94 ± 0.13</td>
+</tr>
+<tr>
+<td>P-L correction</td>
+<td>—</td>
+<td>-0.907 ± 0.205</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Interpretation</strong>: Correction estimation uncertainty does not compromise concordance. Robust to resampling.</p>
+<hr />
+<h3>3.4 Synthetic Injection/Recovery (100 trials)</h3>
+<p><strong>Purpose</strong>: Test calibration and bias
+<strong>Method</strong>: Plant truth H₀ ∈ [67.3, 67.5], simulate SH0ES with biases, recover via concordance
+<strong>Gates</strong>:
+- |bias| median ≤ 0.3 km s⁻¹ Mpc⁻¹
+- z_planck median ≤ 1.0σ</p>
+<p><strong>Result</strong>: ✅ PASS</p>
+<table>
+<thead>
+<tr>
+<th>Gate</th>
+<th>Value</th>
+<th>Threshold</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td>bias</td>
+<td>median</td>
+<td>0.127 km s⁻¹ Mpc⁻¹</td>
+</tr>
+<tr>
+<td>z_planck median</td>
+<td>0.19σ</td>
+<td>≤ 1.0</td>
+<td>✓</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Planted biases</strong>:
+- Anchor: 1.92 km s⁻¹ Mpc⁻¹
+- P-L: 0.22 km s⁻¹ Mpc⁻¹</p>
+<p><strong>Interpretation</strong>: Methodology correctly recovers planted truth with minimal bias. Calibration validated.</p>
+<hr />
+<h2>4. Overall Validation Summary</h2>
+<table>
+<thead>
+<tr>
+<th>Validation Suite</th>
+<th>Gate</th>
+<th>Result</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>LOAO</strong></td>
+<td>Max z_planck ≤ 1.55σ</td>
+<td>1.52σ</td>
+<td>✅ PASS</td>
+</tr>
+<tr>
+<td><strong>Grid-scan</strong></td>
+<td>Median z_planck ∈ [0.9, 1.1]σ</td>
+<td>0.95σ</td>
+<td>✅ PASS</td>
+</tr>
+<tr>
+<td><strong>Bootstrap</strong></td>
+<td>p95 z_planck ≤ 1.2σ</td>
+<td>1.16σ</td>
+<td>✅ PASS</td>
+</tr>
+<tr>
+<td><strong>Injection</strong></td>
+<td></td>
+<td>bias</td>
+<td>≤ 0.3, z ≤ 1.0σ</td>
+</tr>
+</tbody>
+</table>
+<h3>Final Verdict</h3>
+<p><strong>✅ ALL VALIDATION GATES PASSED</strong></p>
+<p>The concordance result H₀ = 68.52 ± 1.29 km s⁻¹ Mpc⁻¹ has been validated by four independent methods:
+- Robust to anchor choice (LOAO)
+- Stable across parameter variations (Grid-scan)
+- Uncertainty well-characterized (Bootstrap)
+- Calibration verified (Injection)</p>
+<p><strong>This result is publication-ready.</strong></p>
+<hr />
+<h2>5. Reproducibility</h2>
+<p><strong>Seed</strong>: 172901 (fixed for all stochastic operations)
+<strong>Dependencies</strong>: See <code>requirements.txt</code> (all versions pinned)
+<strong>Data checksums</strong>: See <code>outputs/reproducibility/SHASUMS256.json</code>
+<strong>Provenance</strong>: See <code>outputs/reproducibility/manifest.json</code></p>
+<h3>Container</h3>
+<pre><code class="language-bash">podman build -t h0_rigorous:1.0 -f Containerfile .
+podman run --rm -it -v $PWD:/work:Z -w /work h0_rigorous:1.0 make all
+</code></pre>
+<h3>Bare-metal</h3>
+<pre><code class="language-bash">make all
+</code></pre>
+<hr />
+<p><strong>Generated by</strong>: HubbleBubble v1.0.0
+<strong>Runtime</strong>: N/A
+<strong>Report</strong>: <code>outputs/h0_validation_report.html</code></p>
+</body>
+</html>

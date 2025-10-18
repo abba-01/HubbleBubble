@@ -1,0 +1,11 @@
+{
+  "RENT_SPEC_VERSION": "1.0.0",
+  "mode": "audit",
+  "checked": 52,
+  "matched": 52,
+  "mismatches": [],
+  "missing": [],
+  "extra": [],
+  "passed": true,
+  "acceptability_decision": null
+}

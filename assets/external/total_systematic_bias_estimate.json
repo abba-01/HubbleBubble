@@ -1,0 +1,63 @@
+{
+  "gap_analysis": {
+    "original_gap": 6.315450006448188,
+    "corrected_gap": 4.177889505448235,
+    "gap_reduction": 2.137560500999953,
+    "gap_reduction_pct": 33.84652714877745
+  },
+  "systematic_biases": {
+    "planck_omegac_uncertainty": {
+      "value": 0.584247177627511,
+      "description": "H\u2080 uncertainty from omega_c correlation",
+      "is_bias": false,
+      "note": "This is parameter uncertainty, not systematic bias"
+    },
+    "shoes_anchor_bias": {
+      "value": 1.9206521739130267,
+      "description": "Potential bias from anchor choice (MW vs LMC/NGC4258)",
+      "is_bias": true,
+      "note": "MW is 3.84 km/s/Mpc higher than LMC/NGC4258"
+    },
+    "shoes_pl_bias": {
+      "value": 0.21690832708693086,
+      "description": "Potential bias from P-L relation choices",
+      "is_bias": true,
+      "note": "P-L variation 0.43, estimate ~50% is bias"
+    },
+    "helium_metallicity_bias": {
+      "value": 0.0,
+      "description": "Cross-domain helium/metallicity bias",
+      "is_bias": true,
+      "note": "No direct evidence in MCMC data; would need detailed BBN analysis"
+    },
+    "velocity_field_bias": {
+      "value": 0.0,
+      "description": "Local velocity field systematic",
+      "is_bias": true,
+      "note": "No direct evidence in MCMC data; would need velocity field analysis"
+    }
+  },
+  "total_bias": 2.1375605009999576,
+  "fraction_explained_pct": 33.846527148777525,
+  "outcome": "B",
+  "outcome_name": "SYSTEMATICS PARTIAL",
+  "corrections": {
+    "planck_correction": 0.0,
+    "shoes_correction": 2.1375605009999576,
+    "h0_planck_corrected": 67.27331189831371,
+    "h0_shoes_corrected": 71.45120140376194
+  },
+  "concordance": {
+    "h0": 67.82022728365202,
+    "uncertainty": 0.5631565966473877,
+    "residual_to_planck": 0.5469153853383091,
+    "residual_to_shoes": 5.768534621109879,
+    "tension_to_planck_sigma": 0.9711603994239495,
+    "tension_to_shoes_sigma": 10.24321592866249
+  },
+  "tension_reduction": {
+    "baseline_tension_sigma": 3.78259481751535,
+    "final_tension_sigma": 0.9711603994239495,
+    "reduction_pct": 74.32555041510183
+  }
+}

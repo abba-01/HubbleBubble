@@ -1,0 +1,44 @@
+{
+  "inputs": {
+    "h0_planck": 67.27331189831371,
+    "std_planck": 0.6040822485825148,
+    "h0_shoes": 71.45120140376194,
+    "std_shoes": 1.888111818370022,
+    "disagreement": 4.177889505448235
+  },
+  "observer_tensors": {
+    "T_planck": [
+      1.0,
+      0.0,
+      1.0,
+      0.5
+    ],
+    "T_shoes": [
+      0.8,
+      1.0,
+      0.1,
+      0.5
+    ],
+    "delta_T": 1.3601470508735443
+  },
+  "epistemic_penalty": {
+    "f_systematic": 0.5,
+    "u_epistemic": 1.4206360224277368,
+    "u_eff_planck": 1.543736399542295,
+    "u_eff_shoes": 2.362873874519724
+  },
+  "concordance": {
+    "h0": 68.52313012235288,
+    "uncertainty": 1.292365905171639,
+    "w_planck": 0.4196176150835307,
+    "w_shoes": 0.17910962270251995
+  },
+  "simple_merge": {
+    "h0": 67.66125642697489,
+    "uncertainty": 0.5753525620543203
+  },
+  "comparison": {
+    "delta_h0": 0.8618736953779944,
+    "delta_uncertainty": 0.7170133431173187
+  }
+}

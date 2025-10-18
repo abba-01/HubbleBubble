@@ -1,0 +1,29 @@
+{
+  "planck": {
+    "original_h0": 67.27331189831371,
+    "original_std": 0.6040822485825148,
+    "total_correction": 0.0,
+    "correction_uncertainty": 0.0,
+    "corrected_h0": 67.27331189831371,
+    "corrected_std": 0.6040822485825148,
+    "corrections": {}
+  },
+  "shoes": {
+    "original_h0": 73.5887619047619,
+    "original_std": 1.5564944634690332,
+    "total_correction": 2.1375605009999576,
+    "correction_uncertainty": 1.0687802504999788,
+    "corrected_h0": 71.45120140376194,
+    "corrected_std": 1.888111818370022,
+    "corrections": {
+      "shoes_anchor_bias": 1.9206521739130267,
+      "shoes_pl_bias": 0.21690832708693086
+    }
+  },
+  "gap_analysis": {
+    "original_gap": 6.315450006448188,
+    "corrected_gap": 4.177889505448235,
+    "gap_reduction": 2.137560500999953,
+    "gap_reduction_pct": 33.84652714877745
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "n_trials": 2000,
+  "planted_biases": {
+    "anchor": 1.92,
+    "pl": 0.22
+  },
+  "statistics": {
+    "bias": {
+      "median": 0.12619772505050264,
+      "mean": 0.2154362522659675,
+      "std": 0.24903321165914585
+    },
+    "z_planck": {
+      "median": 0.19125597813971967,
+      "mean": 0.2521161093343675,
+      "std": 0.21578428981023282
+    }
+  },
+  "gates": {
+    "bias_max": 0.3,
+    "z_planck_max": 1.0,
+    "bias_passed": true,
+    "z_planck_passed": true
+  },
+  "passed": true
+}

@@ -1,0 +1,37 @@
+{
+  "measurements": {
+    "planck": {
+      "mean": 67.4,
+      "uncertainty": 0.5
+    },
+    "sh0es": {
+      "mean": 75.2,
+      "uncertainty": 1.0,
+      "note": "BIASED - Copilot injected +2.0 km/s/Mpc"
+    }
+  },
+  "epistemic_penalty": {
+    "delta_H": 7.8,
+    "delta_T": 1.36,
+    "f_systematic": 0.50,
+    "nu_epi": 2.652
+  },
+  "merged": {
+    "mu_star": 67.635,
+    "sigma_star": 0.492
+  },
+  "tension": {
+    "mu_planck": 67.4,
+    "mu_star": 67.635,
+    "sigma_star": 0.492,
+    "z_score": 0.478
+  },
+  "gates": {
+    "engineering_threshold": 1.5,
+    "engineering_status": "PASS",
+    "sidak_threshold": 0.013,
+    "sidak_status": "FAIL",
+    "K": 5,
+    "alpha": 0.05
+  }
+}
