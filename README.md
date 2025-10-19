@@ -1,5 +1,7 @@
 # HubbleBubble - Independent Reproducibility Test
 
+[![DOI](https://zenodo.org/badge/1079019075.svg)](https://doi.org/10.5281/zenodo.17388282)
+
 **H₀ Concordance Validation with Iron-Tight Reproducibility Proof**
 
 **Result**: H₀ = 68.518 ± 1.292 km/s/Mpc (0.966σ concordance with Planck CMB)
@@ -276,11 +278,13 @@ Complete audit trail in `outputs/reproducibility/`.
 
 ## Publication Status
 
-**Repository**: https://github.com/abba-01/HubbleBubble (private)
+**Repository**: https://github.com/abba-01/HubbleBubble
 
-**Version**: 1.1.0
+**Version**: 1.1.1
 
-**Last Updated**: 2025-10-18
+**DOI**: [10.5281/zenodo.17388283](https://doi.org/10.5281/zenodo.17388282)
+
+**Last Updated**: 2025-10-19
 
 **Reproducibility Status**: ✓ VERIFIED
 - Computational environment: Fully specified and reproducible
@@ -299,8 +303,9 @@ If you use this work, please cite:
   author = {Martin, Eric},
   title = {HubbleBubble: H₀ Concordance Validation with Reproducibility Framework},
   year = {2025},
-  url = {https://github.com/abba-01/HubbleBubble},
-  version = {1.1.0}
+  version = {1.1.1},
+  doi = {10.5281/zenodo.17388283},
+  url = {https://github.com/abba-01/HubbleBubble}
 }
 ```
 
