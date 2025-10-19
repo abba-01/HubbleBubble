@@ -188,7 +188,7 @@ print_success "Dependencies installed"
 print_step "Step 5: Environment Verification (RENT Phase I)"
 
 echo "Checking package versions match canonical baseline..."
-python rent/phase1_environment/check_environment.py
+python rent/phase1_provenance/verify_environment.py
 
 if [ $? -eq 0 ]; then
     print_success "Environment matches canonical baseline"

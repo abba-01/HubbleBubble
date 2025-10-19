@@ -54,6 +54,12 @@ def build_report(output_html, generate_pdf=False):
     print("Computing baseline concordance...")
     h0 = concordance(Epistemic.delta_T, Epistemic.f_systematic)
 
+    # Normalize LOAO structure to match template expectations
+    # LOAO uses different gate structure than other validations
+    if "gate_a_engineering" in loao and "gate" not in loao:
+        loao["gate"] = loao["gate_a_engineering"]["threshold"]
+        loao["passed"] = loao.get("overall_passed", False)
+
     # Check overall pass status
     all_passed = (
         loao.get("passed", False) and
@@ -73,7 +79,7 @@ def build_report(output_html, generate_pdf=False):
     # Render markdown
     print("Rendering report...")
     md_content = template.render(
-        date=datetime.datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC"),
+        date=datetime.datetime.now(datetime.UTC).strftime("%Y-%m-%d %H:%M:%S UTC"),
         env=f"{platform.system()} {platform.release()} / Python {platform.python_version()}",
         h0=h0,
         loao=loao,

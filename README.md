@@ -234,6 +234,18 @@ cat outputs/results/inject.json
 - Verify data provenance (Phase II)
 - Check calculation scripts haven't been modified
 
+### Missing optional data files
+
+**Symptom**: RENT Phase II/III shows missing files:
+- `assets/external/baseline_measurements.json`
+- `assets/external/planck_samples_key_params.npz`
+- `outputs/corrections/epistemic_penalty_applied.json`
+
+**Status**: These are optional cross-validation files
+- RENT will still PASS overall (5/5 phases)
+- Core reproducibility (Phase IV cryptographic hash audit) is unaffected
+- These files are used for extended validation only
+
 ---
 
 ## Scientific Result
