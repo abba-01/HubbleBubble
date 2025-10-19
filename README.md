@@ -14,8 +14,11 @@ This repository tests **true computational reproducibility** - can you independe
 
 - Python 3.10+ (Python 3.12 recommended)
 - Git
+- make (optional - for automated `make validate`, or run scripts manually)
 - ~2GB disk space
 - Linux/macOS (tested on Rocky Linux 10)
+
+**Don't have these installed?** Run `bash install_prerequisites.sh` or ask an AI to write a bash script for your OS.
 
 ### Setup Instructions
 
@@ -32,7 +35,7 @@ source .venv/bin/activate
 pip install -r requirements.txt
 
 # 4. Verify environment matches canonical baseline
-python rent/phase1_environment/check_environment.py
+python rent/phase1_provenance/verify_environment.py
 ```
 
 **Expected**: 100% package match (numpy 2.1.2, astropy 6.1.0)
@@ -42,14 +45,21 @@ python rent/phase1_environment/check_environment.py
 ## Regenerate Results from Scratch
 
 ```bash
-# Run full validation suite (regenerates all outputs)
+# Option A: Using make (if installed)
 make validate
+
+# Option B: Run validation scripts manually (if make not available)
+source .venv/bin/activate
+python src/validation/loao.py --out outputs/results/loao.json
+python src/validation/grids.py --out outputs/results/grids.json
+python src/validation/bootstrap.py --iters 10000 --out outputs/results/bootstrap.json
+python src/validation/inject.py --trials 2000 --out outputs/results/inject.json
 ```
 
 **Expected**:
 - Runtime: ~5-10 minutes
 - Creates: `outputs/results/*.json` (9 result files)
-- Output: Validation report at `outputs/h0_validation_report.html`
+- Output: Validation report at `outputs/h0_validation_report.html` (may have template issues, JSON results are canonical)
 
 ---
 
@@ -57,7 +67,9 @@ make validate
 
 ```bash
 # Run RENT in audit mode to verify against cryptographic baseline
-python rent/run_rent.py --mode audit
+# Use --quick flag for non-interactive execution
+source .venv/bin/activate
+python rent/run_rent.py --mode audit --quick
 ```
 
 **Expected Results**:
