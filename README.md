@@ -488,6 +488,69 @@ HubbleBubble/
 
 ---
 
+## Future Enhancements
+
+The following improvements are under consideration for future releases. **Community contributions welcome!**
+
+### Potential Enhancements
+
+- [ ] **Parallel validation execution** - Reduce runtime from 10 min → ~3 min on multi-core systems
+  - Run LOAO and grids simultaneously (deterministic tests)
+  - Run bootstrap and inject simultaneously (stochastic tests)
+  - See: [Issue #TBD](https://github.com/abba-01/HubbleBubble/issues)
+
+- [ ] **Interactive Jupyter tutorial** - Educational notebook for workshops/teaching
+  - Step-by-step walkthrough of RENT framework
+  - Interactive exercises with immediate feedback
+  - Useful for conference presentations or classes
+
+- [ ] **Sensitivity analysis toolkit** - Robustness testing across parameter space
+  - Test stability across different random seeds
+  - Vary iteration counts and sample sizes
+  - Quantify impact of anchor exclusion combinations
+  - Generate comprehensive robustness reports
+
+- [ ] **Enhanced progress indicators** - Real-time statistics during validation
+  - Live H₀ estimates during bootstrap
+  - Current tension values
+  - Estimated time remaining with better accuracy
+
+- [ ] **Docker Compose orchestration** - Multi-container setup for cloud deployment
+  - Main validation container
+  - Optional Jupyter server
+  - Resource monitoring dashboard
+
+- [ ] **Configuration file support** - YAML-based parameter customization
+  - Easy switching between test/production parameters
+  - Environment-specific configurations
+  - Reduces command-line complexity for complex runs
+
+### Implementation Priority
+
+**When to implement**:
+- ⭐ **High**: If multiple users request it
+- 🔄 **Medium**: If it significantly improves workflow
+- 📚 **Low**: If needed for specific use case (teaching, publication, etc.)
+
+**How to contribute**:
+1. Check if enhancement is already planned (see Issues)
+2. Open a discussion to propose implementation approach
+3. Read [CONTRIBUTING.md](CONTRIBUTING.md) for development guidelines
+4. Submit PR with reproducibility tests
+5. All enhancements must maintain existing reproducibility guarantees
+
+### Design Principles
+
+Any enhancement must:
+- ✅ Maintain byte-for-byte reproducibility (where applicable)
+- ✅ Not compromise computational transparency
+- ✅ Be well-documented and tested
+- ✅ Follow existing code style and structure
+
+See [IMPROVEMENTS_SUMMARY.md](IMPROVEMENTS_SUMMARY.md) for detailed analysis of proposed enhancements.
+
+---
+
 ## License
 
 MIT License (see LICENSE file)
