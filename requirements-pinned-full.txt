@@ -1,0 +1,66 @@
+astropy==6.1.0
+astropy-iers-data==0.2025.10.20.0.39.8
+astroquery==0.4.7
+attrs==25.4.0
+beautifulsoup4==4.14.2
+certifi==2025.10.5
+cffi==2.0.0
+charset-normalizer==3.4.4
+contourpy==1.3.3
+cryptography==46.0.3
+cycler==0.12.1
+fonttools==4.60.1
+html5lib==1.1
+idna==3.11
+jaraco.classes==3.4.0
+jaraco.context==6.0.1
+jaraco.functools==4.3.0
+jeepney==0.9.0
+Jinja2==3.1.4
+jsonschema==4.23.0
+jsonschema-specifications==2025.9.1
+keyring==25.6.0
+kiwisolver==1.4.9
+Markdown==3.7
+MarkupSafe==3.0.3
+matplotlib==3.9.2
+more-itertools==10.8.0
+numpy==2.1.2
+packaging==25.0
+pandas==2.2.2
+pillow==12.0.0
+pycparser==2.23
+pyerfa==2.0.1.5
+pyparsing==3.2.5
+python-dateutil==2.9.0.post0
+pytz==2025.2
+pyvo==1.7.1
+PyYAML==6.0.2
+referencing==0.37.0
+requests==2.32.5
+rpds-py==0.27.1
+scipy==1.13.1
+seaborn==0.13.2
+SecretStorage==3.4.0
+six==1.17.0
+soupsieve==2.8
+tabulate==0.9.0
+tqdm==4.66.5
+typing_extensions==4.15.0
+tzdata==2025.2
+urllib3==2.5.0
+webencodings==0.5.1
+
+# ============================================================================
+# Complete Dependency Freeze (Including Transitive Dependencies)
+# Generated: 2025-10-20
+# ============================================================================
+# 
+# This file contains ALL installed packages, including transitive dependencies.
+# Use requirements.txt for normal installation (direct dependencies only).
+#
+# System Information:
+Python 3.12.9
+pip 25.2 from /got/HubbleBubble/.venv/lib64/python3.12/site-packages/pip (python 3.12)
+Linux edm.ericdmartin.com 6.12.0-55.39.1.el10_0.x86_64 #1 SMP PREEMPT_DYNAMIC Sat Oct  4 03:09:12 EDT 2025 x86_64 GNU/Linux
+# Total packages: 65

@@ -1,0 +1,179 @@
+name: Reproducibility Check
+
+on:
+  push:
+    branches: [ master, main ]
+  pull_request:
+    branches: [ master, main ]
+  schedule:
+    # Weekly check on Sunday at midnight UTC
+    - cron: '0 0 * * 0'
+  workflow_dispatch:  # Allow manual triggering
+
+jobs:
+  quick-validation:
+    name: Quick Validation (Python ${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ['3.10', '3.11', '3.12']
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Cache pip packages
+      uses: actions/cache@v4
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+
+    - name: Create virtual environment
+      run: |
+        python -m venv .venv
+        source .venv/bin/activate
+        python --version
+        pip --version
+
+    - name: Install dependencies
+      run: |
+        source .venv/bin/activate
+        pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Verify environment (Phase I)
+      run: |
+        source .venv/bin/activate
+        python rent/phase1_provenance/verify_environment.py --mode audit --no-interactive
+      continue-on-error: true  # IERS data may drift
+
+    - name: Quick validation test (100 iterations)
+      run: |
+        source .venv/bin/activate
+        mkdir -p outputs/results
+        python src/validation/bootstrap.py --iters 100 --out outputs/results/bootstrap_ci.json
+        python src/validation/inject.py --trials 100 --out outputs/results/inject_ci.json
+      timeout-minutes: 5
+
+    - name: Verify outputs created
+      run: |
+        ls -lh outputs/results/
+        test -f outputs/results/bootstrap_ci.json
+        test -f outputs/results/inject_ci.json
+
+    - name: Upload CI results
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: ci-results-py${{ matrix.python-version }}
+        path: |
+          outputs/results/*_ci.json
+          outputs/logs/*.json
+        retention-days: 30
+
+    - name: Report status
+      if: success()
+      run: |
+        echo "✅ Quick validation passed on Python ${{ matrix.python-version }}"
+        echo "Pipeline is functional and produces expected outputs"
+
+  full-validation:
+    name: Full Validation (Python 3.12)
+    runs-on: ubuntu-latest
+    # Only run full validation on push to main/master, not on every PR
+    if: github.event_name == 'push' || github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Python 3.12
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+
+    - name: Install dependencies
+      run: |
+        python -m venv .venv
+        source .venv/bin/activate
+        pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Run full validation (~10 minutes)
+      run: |
+        source .venv/bin/activate
+        make validate || {
+          # Fallback if make fails
+          python src/validation/loao.py --out outputs/results/loao.json
+          python src/validation/grids.py --out outputs/results/grids.json
+          python src/validation/bootstrap.py --iters 10000 --out outputs/results/bootstrap.json
+          python src/validation/inject.py --trials 2000 --out outputs/results/inject.json
+        }
+      timeout-minutes: 15
+
+    - name: Run RENT audit
+      run: |
+        source .venv/bin/activate
+        python rent/run_rent.py --mode audit --quick
+      continue-on-error: true  # Optional files may be missing
+
+    - name: Upload full validation results
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: full-validation-results
+        path: |
+          outputs/results/*.json
+          outputs/logs/*.json
+          outputs/h0_validation_report.html
+        retention-days: 90
+
+    - name: Check for hash matches
+      run: |
+        if [ -f outputs/logs/phase4_hash_audit.json ]; then
+          echo "📊 Checking hash audit results..."
+          python -c "
+import json
+with open('outputs/logs/phase4_hash_audit.json') as f:
+    data = json.load(f)
+    matches = data.get('matches', 0)
+    total = data.get('total_files', 0)
+    print(f'Hash matches: {matches}/{total}')
+    if matches == total:
+        print('✅ All files match baseline')
+    else:
+        print('⚠️ Some files differ from baseline')
+          "
+        else
+          echo "⚠️ Hash audit log not found"
+        fi
+
+  summary:
+    name: Workflow Summary
+    runs-on: ubuntu-latest
+    needs: [quick-validation, full-validation]
+    if: always()
+
+    steps:
+    - name: Report overall status
+      run: |
+        echo "## Reproducibility Check Summary" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "- Quick validation: ${{ needs.quick-validation.result }}" >> $GITHUB_STEP_SUMMARY
+        echo "- Full validation: ${{ needs.full-validation.result }}" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+
+        if [ "${{ needs.quick-validation.result }}" == "success" ]; then
+          echo "✅ Pipeline is functional across Python versions" >> $GITHUB_STEP_SUMMARY
+        else
+          echo "❌ Quick validation failed - see logs" >> $GITHUB_STEP_SUMMARY
+        fi

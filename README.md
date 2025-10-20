@@ -18,9 +18,30 @@ This repository tests **true computational reproducibility** - can you independe
 - Git
 - make (optional - for automated `make validate`, or run scripts manually)
 - ~2GB disk space
+- Internet connection (for pip package installation)
 - Linux/macOS (tested on Rocky Linux 10)
 
+**System Resources**:
+- ~2GB RAM (minimum)
+- 1 CPU core (code is single-threaded)
+- Runtime: 5-10 minutes for full validation
+
 **Don't have these installed?** Run `bash install_prerequisites.sh` or ask an AI to write a bash script for your OS.
+
+### Platform Notes
+
+**Windows Users**: This project requires a Unix-like environment. Options:
+- **Recommended**: Use WSL2 (Windows Subsystem for Linux)
+  ```powershell
+  wsl --install
+  # Then follow Linux instructions inside WSL
+  ```
+- **Alternative**: Use Docker with the provided `Containerfile`
+  ```bash
+  docker build -t hubblebubble .
+  docker run -v %cd%/outputs:/workspace/outputs hubblebubble
+  ```
+- Git Bash may work but is not tested
 
 ### Setup Instructions
 
@@ -46,6 +67,20 @@ python rent/phase1_provenance/verify_environment.py
 
 ## Regenerate Results from Scratch
 
+### Quick Test (Optional - 30 seconds)
+
+For a fast sanity check before the full validation:
+
+```bash
+source .venv/bin/activate
+python src/validation/bootstrap.py --iters 100 --out outputs/results/bootstrap_quick.json
+python src/validation/inject.py --trials 100 --out outputs/results/inject_quick.json
+```
+
+This validates the pipeline without full statistical power. Then run full validation below.
+
+### Full Validation (~5-10 minutes)
+
 ```bash
 # Option A: Using make (if installed)
 make validate
@@ -59,7 +94,7 @@ python src/validation/inject.py --trials 2000 --out outputs/results/inject.json
 ```
 
 **Expected**:
-- Runtime: ~5-10 minutes
+- Runtime: ~5-10 minutes (full), ~30 seconds (quick test)
 - Creates: `outputs/results/*.json` (9 result files)
 - Output: Validation report at `outputs/h0_validation_report.html` (may have template issues, JSON results are canonical)
 
@@ -221,15 +256,39 @@ cat outputs/results/inject.json
 **Symptom**: Phase I shows package version differences
 **Fix**: Ensure using Python 3.10+ and `pip install -r requirements.txt` in clean venv
 
+**Important**: Always use a fresh virtual environment:
+```bash
+rm -rf .venv  # Remove old venv if it exists
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
+
+### IERS Data Version Drift
+**Symptom**: Phase I shows `astropy-iers-data` version mismatch
+```
+✗ MISMATCH: astropy-iers-data
+    Expected: 0.2025.10.13.0.37.17
+    Installed: 0.2025.10.20.0.39.8
+```
+
+**Status**: ✅ **EXPECTED AND ACCEPTABLE**
+- IERS (International Earth Rotation Service) data updates daily with new astronomical observations
+- This is a data update, not a code change
+- Does not affect computational reproducibility
+- **Core packages must still match exactly**: numpy, scipy, pandas, astropy
+
 ### Make validate fails
 **Symptom**: `make: *** No rule to make target 'validate'`
 **Fix**: Run validation scripts directly (see "Individual Validation Scripts" above)
 
 ### Hash mismatches
 **Symptom**: Phase IV shows hash differences
+
 **Expected for stochastic files** (`bootstrap.json`, `inject.json`):
-- This is normal - different random samples
-- RENT will verify statistical equivalence automatically
+- With fixed seed (172901), these should be byte-identical
+- Different platforms/Python versions may produce statistical equivalence instead
+- RENT will verify via Kolmogorov-Smirnov test automatically
 
 **Unexpected for deterministic files**:
 - Check environment match (Phase I)
@@ -243,10 +302,11 @@ cat outputs/results/inject.json
 - `assets/external/planck_samples_key_params.npz`
 - `outputs/corrections/epistemic_penalty_applied.json`
 
-**Status**: These are optional cross-validation files
-- RENT will still PASS overall (5/5 phases)
+**Status**: ✅ These are optional cross-validation files
+- RENT will still **PASS** overall (5/5 phases)
 - Core reproducibility (Phase IV cryptographic hash audit) is unaffected
 - These files are used for extended validation only
+- **You can safely ignore these warnings**
 
 ---
 
@@ -323,13 +383,15 @@ HubbleBubble/
 │
 ├── rent/                        # RENT validation framework
 │   ├── run_rent.py             # Main RENT orchestrator
-│   ├── phase1_environment/     # Environment verification
-│   ├── phase2_regeneration/    # Result regeneration scripts
+│   ├── phase1_provenance/      # Environment verification
+│   ├── phase2_reexecution/     # Result regeneration scripts
 │   ├── phase3_crossvalidation/ # Literature anchor validation
 │   ├── phase4_audit/           # Cryptographic hash audit
-│   ├── phase5_reimplementation/ # Calculation validation
-│   ├── phase6_accept_tree/     # Decision logging
-│   └── phase7_assembly/        # Final outputs
+│   ├── phase5_calculation/     # Calculation validation
+│   └── lib/                    # Shared utilities
+│
+├── src/                         # Core validation scripts
+│   └── validation/             # LOAO, grids, bootstrap, injection
 │
 ├── outputs/
 │   ├── results/                # Validation result files (JSON)
@@ -337,7 +399,9 @@ HubbleBubble/
 │   ├── reproducibility/        # Baseline hashes, audit trail
 │   └── h0_validation_report.html
 │
-└── data/                       # Input data files (Paper 3)
+└── assets/                      # Input data files (Paper 3)
+    ├── vizier/                 # SH0ES systematic grid (CSV)
+    └── external/               # Optional reference files
 ```
 
 ---

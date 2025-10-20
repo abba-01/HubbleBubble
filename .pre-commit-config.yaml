@@ -1,0 +1,132 @@
+# Pre-commit hooks for HubbleBubble
+# Ensures code quality and consistency before commits
+#
+# Installation:
+#   pip install pre-commit
+#   pre-commit install
+#
+# Usage:
+#   pre-commit run --all-files  # Run on all files
+#   pre-commit run              # Run on staged files only
+#   git commit                   # Hooks run automatically
+
+repos:
+  # General file checks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: trailing-whitespace
+        name: Trim trailing whitespace
+        exclude: ^outputs/|^assets/
+
+      - id: end-of-file-fixer
+        name: Fix end of files
+        exclude: ^outputs/|^assets/
+
+      - id: check-yaml
+        name: Check YAML syntax
+        args: ['--safe']
+
+      - id: check-json
+        name: Check JSON syntax
+        exclude: ^outputs/  # Exclude generated results
+
+      - id: check-added-large-files
+        name: Check for large files
+        args: ['--maxkb=1000']  # 1MB limit
+        exclude: ^assets/|^outputs/
+
+      - id: check-merge-conflict
+        name: Check for merge conflicts
+
+      - id: check-case-conflict
+        name: Check for case conflicts
+
+      - id: mixed-line-ending
+        name: Check line endings
+        args: ['--fix=lf']
+
+      - id: detect-private-key
+        name: Detect private keys
+
+  # Python code formatting
+  - repo: https://github.com/psf/black
+    rev: 24.1.1
+    hooks:
+      - id: black
+        name: Format Python code (black)
+        language_version: python3.12
+        args: ['--line-length=100']
+        exclude: ^outputs/|^\.venv/
+
+  # Python import sorting
+  - repo: https://github.com/pycqa/isort
+    rev: 5.13.2
+    hooks:
+      - id: isort
+        name: Sort Python imports
+        args: ['--profile=black', '--line-length=100']
+        exclude: ^outputs/|^\.venv/
+
+  # Python linting (catches common errors)
+  - repo: https://github.com/pycqa/flake8
+    rev: 7.0.0
+    hooks:
+      - id: flake8
+        name: Lint Python code (flake8)
+        args: [
+          '--max-line-length=100',
+          '--extend-ignore=E203,W503',  # Compatible with black
+          '--exclude=.venv,outputs,__pycache__'
+        ]
+
+  # Markdown linting
+  - repo: https://github.com/igorshubovych/markdownlint-cli
+    rev: v0.39.0
+    hooks:
+      - id: markdownlint
+        name: Lint Markdown files
+        args: ['--fix']
+        exclude: ^outputs/|^CHANGELOG.md
+
+  # Security checks
+  - repo: https://github.com/PyCQA/bandit
+    rev: 1.7.6
+    hooks:
+      - id: bandit
+        name: Security checks (bandit)
+        args: ['-c', 'pyproject.toml', '-r', 'rent/', 'src/']
+        additional_dependencies: ['bandit[toml]']
+        exclude: ^outputs/|^\.venv/|^tests/
+
+  # Type checking (optional - uncomment if you add type hints)
+  # - repo: https://github.com/pre-commit/mirrors-mypy
+  #   rev: v1.8.0
+  #   hooks:
+  #     - id: mypy
+  #       name: Type check Python code
+  #       args: ['--ignore-missing-imports', '--no-strict-optional']
+  #       additional_dependencies: [types-all]
+  #       exclude: ^outputs/|^\.venv/
+
+# Configuration for specific checks
+default_language_version:
+  python: python3.12
+
+# Files to exclude from all hooks
+exclude: |
+  (?x)^(
+    \.venv/.*|
+    outputs/.*|
+    \.git/.*|
+    __pycache__/.*|
+    .*\.pyc$|
+    .*\.pyo$|
+    historical/.*
+  )$
+
+# Fail fast - stop on first failure
+fail_fast: false
+
+# Minimum version
+minimum_pre_commit_version: '3.0.0'

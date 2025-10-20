@@ -24,7 +24,10 @@ from lib.acceptability_tree import AcceptabilityTree
 
 def get_installed_packages():
     """Get list of installed packages from pip freeze"""
-    result = subprocess.run(['pip', 'freeze'], capture_output=True, text=True)
+    # Use sys.executable to ensure we get packages from the current Python environment
+    # not from system pip (fixes false warnings when using venv)
+    result = subprocess.run([sys.executable, '-m', 'pip', 'freeze'],
+                          capture_output=True, text=True)
     packages = {}
     for line in result.stdout.strip().split('\n'):
         if '==' in line:
@@ -36,7 +39,26 @@ def get_expected_packages():
     """Load expected packages from pip-freeze.txt"""
     freeze_file = Path('outputs/reproducibility/pip-freeze.txt')
     if not freeze_file.exists():
-        print(f"✗ CRITICAL: {freeze_file} not found")
+        print(f"""
+✗ CRITICAL: {freeze_file} not found
+
+This file contains the baseline package versions for reproducibility verification.
+
+RECOVERY STEPS:
+  1. Ensure you're in the HubbleBubble root directory
+     Current directory: {Path.cwd()}
+
+  2. Check if the file exists elsewhere:
+     find . -name "pip-freeze.txt"
+
+  3. If missing, the repository may be incomplete. Try:
+     git pull origin master
+
+  4. For archived versions, download from:
+     https://github.com/abba-01/HubbleBubble/releases/latest
+
+For help: https://github.com/abba-01/HubbleBubble/issues
+""")
         return None
 
     packages = {}
