@@ -1,0 +1,55 @@
+# Dependabot configuration for HubbleBubble
+# Automated dependency updates with reproducibility safeguards
+#
+# IMPORTANT: Any dependency update MUST be validated:
+#   1. Run: make validate
+#   2. Run: python rent/run_rent.py --mode strict
+#   3. If hashes change, decide: revert OR update baseline with justification
+
+version: 2
+updates:
+  # Python dependencies
+  - package-ecosystem: "pip"
+    directory: "/"
+    schedule:
+      interval: "monthly"  # Conservative - stability over freshness
+    open-pull-requests-limit: 3
+    labels:
+      - "dependencies"
+      - "requires-reproduction-test"
+      - "python"
+    commit-message:
+      prefix: "deps"
+      include: "scope"
+    # Ignore major version updates for critical packages
+    ignore:
+      - dependency-name: "numpy"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "scipy"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "pandas"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "astropy"
+        update-types: ["version-update:semver-major"]
+    reviewers:
+      - "abba-01"  # Update with actual maintainer GitHub username
+
+  # GitHub Actions dependencies
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    labels:
+      - "dependencies"
+      - "github-actions"
+    commit-message:
+      prefix: "ci"
+      include: "scope"
+    reviewers:
+      - "abba-01"  # Update with actual maintainer GitHub username
+
+# Notes for maintainers:
+# - Monthly schedule balances security with reproducibility stability
+# - All PRs require running full validation suite
+# - Major version updates of core packages are ignored (manual review needed)
+# - If dependency update changes results, update BASELINE_HASHES.json with justification
