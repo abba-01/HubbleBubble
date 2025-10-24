@@ -1,6 +1,6 @@
 # HubbleBubble - Independent Reproducibility Test
 
-[![DOI](https://zenodo.org/badge/1079019075.svg)](https://doi.org/10.5281/zenodo.17388282)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17388283.svg)](https://doi.org/10.5281/zenodo.17388283)
 
 **H₀ Concordance Validation with Iron-Tight Reproducibility Proof**
 
